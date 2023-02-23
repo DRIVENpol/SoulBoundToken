@@ -68,7 +68,7 @@ contract SoulBoundNft is ERC721 {
     uint256 _counter = counter;
     counter++;
 
-    _safeMint(to, _counter);
+    _mint(to, _counter);
     _setStatus(_counter, true);
     _setType(_counter, _type);
 
@@ -144,7 +144,7 @@ contract SoulBoundNft is ERC721 {
   }
 
   /// @dev Function to revoke roles in the smart contract
-  function revokeRoles(address[] calldata who) external {
+  function revokeRoles(address[] calldata who) external onlyOwner {
     for(uint256 i=0; i<= who.length; i++) {
             delete role[who[i]];
     }
